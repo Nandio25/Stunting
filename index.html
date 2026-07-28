@@ -226,7 +226,7 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
   margin-bottom:30px;
 }
 
-/* === FINGERPRINT BUTTON - IMPROVED === */
+/* === FINGERPRINT BUTTON - HUMAN PALM DESIGN === */
 .fingerprint-btn {
   position:relative;
   width:150px;
@@ -291,20 +291,20 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
   }
 }
 
-/* SVG Fingerprint - Realistic */
+/* SVG Fingerprint - Human Palm Design */
 .fingerprint-btn svg {
-  width:80px;
-  height:80px;
+  width:85px;
+  height:85px;
   position:relative;
   z-index:2;
   transition:all 0.6s cubic-bezier(.23,1,.32,1);
 }
 
-/* All fingerprint path styles */
+/* Fingerprint path styles */
 .fingerprint-btn svg .fp-main {
   fill:none;
   stroke:rgba(255,255,255,0.25);
-  stroke-width:2.5;
+  stroke-width:2.2;
   stroke-linecap:round;
   stroke-linejoin:round;
   transition:all 0.6s ease;
@@ -313,7 +313,7 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
 .fingerprint-btn svg .fp-detail {
   fill:none;
   stroke:rgba(255,255,255,0.12);
-  stroke-width:1.5;
+  stroke-width:1.3;
   stroke-linecap:round;
   stroke-linejoin:round;
   transition:all 0.6s ease;
@@ -322,7 +322,7 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
 .fingerprint-btn svg .fp-core {
   fill:none;
   stroke:rgba(255,255,255,0.08);
-  stroke-width:1;
+  stroke-width:0.8;
   stroke-linecap:round;
   stroke-linejoin:round;
   transition:all 0.6s ease;
@@ -343,7 +343,7 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
 
 .fingerprint-btn.scanning svg .fp-main {
   stroke:#ffffff;
-  stroke-width:3;
+  stroke-width:2.8;
   filter:drop-shadow(0 0 20px rgba(255,255,255,0.15));
 }
 
@@ -358,7 +358,7 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
 /* Scan line */
 .fingerprint-btn .scan-line {
   position:absolute;
-  width:65%;
+  width:60%;
   height:2px;
   background:linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
   opacity:0;
@@ -375,7 +375,7 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
 
 @keyframes scanDown {
   0% {
-    top:18%;
+    top:20%;
     opacity:0;
     transform:scaleX(0.8);
   }
@@ -388,7 +388,7 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
     transform:scaleX(1);
   }
   100% {
-    top:82%;
+    top:80%;
     opacity:0;
     transform:scaleX(0.8);
   }
@@ -449,7 +449,7 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
 
 .fingerprint-btn.success svg .fp-main {
   stroke:#80ffc0;
-  stroke-width:2.5;
+  stroke-width:2.2;
   filter:drop-shadow(0 0 30px rgba(100,255,200,0.15));
 }
 
@@ -986,7 +986,7 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
 
   .landing-title{ font-size:2rem; }
   .fingerprint-btn{ width:120px; height:120px; }
-  .fingerprint-btn svg{ width:60px; height:60px; }
+  .fingerprint-btn svg{ width:65px; height:65px; }
   .fingerprint-label{ font-size:0.6rem; }
   
   .music-toggle{
@@ -1024,7 +1024,7 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
   .landing-title{ font-size:1.6rem; }
   .landing-sub{ font-size:0.85rem; letter-spacing:2px; }
   .fingerprint-btn{ width:100px; height:100px; }
-  .fingerprint-btn svg{ width:50px; height:50px; }
+  .fingerprint-btn svg{ width:55px; height:55px; }
   .fingerprint-status{ font-size:0.55rem; }
 
   .music-toggle{
@@ -1160,7 +1160,7 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
     <div class="landing-divider"></div>
     <p class="landing-org">KKN Kelompok 13 · Universitas Muhammadiyah Sukabumi 2026</p>
 
-    <!-- Fingerprint Button - Improved Design -->
+    <!-- Fingerprint Button - Human Palm Design -->
     <button class="fingerprint-btn" id="enterBtn" aria-label="Scan fingerprint to enter">
       <!-- Outer rings -->
       <span class="ring ring-1"></span>
@@ -1181,42 +1181,65 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
         </svg>
       </span>
       
-      <!-- SVG Fingerprint - Realistic Design -->
+      <!-- SVG Fingerprint - Human Palm with Realistic Fingerprint -->
       <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Main fingerprint lines - outer -->
-        <path class="fp-main" d="M60 15C40 15 25 30 25 50V65C25 75 30 85 40 90C45 93 50 97 50 102C50 107 45 112 40 112C35 112 30 107 30 102V90" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-        <path class="fp-main" d="M60 15C80 15 95 30 95 50V65C95 75 90 85 80 90C75 93 70 97 70 102C70 107 75 112 80 112C85 112 90 107 90 102V90" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Outer palm shape -->
+        <path class="fp-main" d="M60 20C45 20 32 30 28 45C25 55 22 65 20 78C18 88 20 98 28 105C36 112 48 115 60 115C72 115 84 112 92 105C100 98 102 88 100 78C98 65 95 55 92 45C88 30 75 20 60 20Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
         
-        <!-- Middle fingerprint lines -->
-        <path class="fp-main" d="M60 35C48 35 38 45 38 57V67C38 78 44 86 52 90C56 92 58 95 58 99" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-        <path class="fp-main" d="M60 35C72 35 82 45 82 57V67C82 78 76 86 68 90" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Thumb area -->
+        <path class="fp-main" d="M28 60C22 55 16 58 14 65C12 72 15 80 20 85" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <path class="fp-detail" d="M30 55C25 52 20 56 18 63" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
         
-        <!-- Inner detailed lines -->
-        <path class="fp-detail" d="M47 57C47 50 53 46 60 46C67 46 73 50 73 57V67C73 74 67 78 60 78C53 78 47 74 47 67V57Z" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- Index finger -->
+        <path class="fp-main" d="M35 45C33 38 30 32 28 28" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <path class="fp-detail" d="M33 42C31 36 28 30 26 26" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
         
-        <!-- Core details -->
-        <path class="fp-core" d="M53 57C53 53 57 51 60 51C63 51 67 53 67 57V62C67 66 63 68 60 68C57 68 53 66 53 62V57Z" stroke="white" stroke-width="1" stroke-linecap="round"/>
-        <circle class="fp-core" cx="60" cy="59" r="3" stroke="white" stroke-width="0.8"/>
+        <!-- Middle finger -->
+        <path class="fp-main" d="M48 30C46 24 45 18 45 14" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <path class="fp-detail" d="M46 28C44 22 43 16 43 12" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
         
-        <!-- Additional fingerprint ridges -->
-        <path class="fp-detail" d="M30 55C30 40 43 30 60 30C77 30 90 40 90 55" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-        <path class="fp-detail" d="M33 58C33 45 46 37 60 37C74 37 87 45 87 58" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
-        <path class="fp-detail" d="M36 61C36 50 48 44 60 44C72 44 84 50 84 61" stroke="white" stroke-width="1" stroke-linecap="round"/>
+        <!-- Ring finger -->
+        <path class="fp-main" d="M70 30C72 24 73 18 73 14" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <path class="fp-detail" d="M72 28C74 22 75 16 75 12" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
         
-        <!-- Bottom loop -->
-        <path class="fp-detail" d="M39 64C39 55 49 50 60 50C71 50 81 55 81 64" stroke="white" stroke-width="0.8" stroke-linecap="round"/>
+        <!-- Pinky finger -->
+        <path class="fp-main" d="M85 45C87 38 89 32 90 28" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <path class="fp-detail" d="M87 42C89 36 91 30 92 26" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+        
+        <!-- Fingerprint ridges - Arch pattern -->
+        <path class="fp-detail" d="M40 70C40 62 48 56 60 56C72 56 80 62 80 70" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <path class="fp-detail" d="M42 74C42 67 49 62 60 62C71 62 78 67 78 74" stroke="white" stroke-width="1.3" stroke-linecap="round"/>
+        <path class="fp-detail" d="M44 78C44 72 50 68 60 68C70 68 76 72 76 78" stroke="white" stroke-width="1.1" stroke-linecap="round"/>
+        <path class="fp-detail" d="M46 82C46 77 51 74 60 74C69 74 74 77 74 82" stroke="white" stroke-width="0.9" stroke-linecap="round"/>
+        <path class="fp-detail" d="M48 86C48 82 52 80 60 80C68 80 72 82 72 86" stroke="white" stroke-width="0.8" stroke-linecap="round"/>
+        
+        <!-- Loop pattern on thumb -->
+        <path class="fp-core" d="M24 68C22 63 25 58 30 58C35 58 38 63 36 68" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+        <path class="fp-core" d="M26 66C25 63 27 60 30 60C33 60 35 63 34 66" stroke="white" stroke-width="0.8" stroke-linecap="round"/>
+        
+        <!-- Whorl pattern on palm center -->
+        <path class="fp-core" d="M55 65C52 62 52 58 55 56C58 54 62 54 65 56C68 58 68 62 65 65C62 68 58 68 55 65Z" stroke="white" stroke-width="1" stroke-linecap="round"/>
+        <path class="fp-core" d="M57 63C55 62 55 60 57 59C59 58 61 58 63 59C65 60 65 62 63 63C61 64 59 64 57 63Z" stroke="white" stroke-width="0.8" stroke-linecap="round"/>
+        <circle class="fp-core" cx="60" cy="61" r="2.5" stroke="white" stroke-width="0.7"/>
+        
+        <!-- Additional ridge details -->
+        <path class="fp-core" d="M50 50C48 46 52 42 58 42C64 42 68 46 66 50" stroke="white" stroke-width="0.8" stroke-linecap="round"/>
+        <path class="fp-core" d="M52 47C51 45 53 43 58 43C63 43 65 45 64 47" stroke="white" stroke-width="0.6" stroke-linecap="round"/>
         
         <!-- Side ridges -->
-        <path class="fp-core" d="M25 60C25 48 40 38 60 38" stroke="white" stroke-width="0.8" stroke-linecap="round"/>
-        <path class="fp-core" d="M95 60C95 48 80 38 60 38" stroke="white" stroke-width="0.8" stroke-linecap="round"/>
+        <path class="fp-core" d="M30 52C28 48 30 44 35 44" stroke="white" stroke-width="0.8" stroke-linecap="round"/>
+        <path class="fp-core" d="M90 52C92 48 90 44 85 44" stroke="white" stroke-width="0.8" stroke-linecap="round"/>
         
-        <!-- Bottom extension -->
-        <path class="fp-main" d="M58 99V106" stroke="white" stroke-width="2" stroke-linecap="round"/>
-        <path class="fp-main" d="M62 99V106" stroke="white" stroke-width="2" stroke-linecap="round"/>
-        <path class="fp-main" d="M60 106V112" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <!-- Bottom palm lines -->
+        <path class="fp-detail" d="M38 90C42 94 50 96 60 96C70 96 78 94 82 90" stroke="white" stroke-width="1" stroke-linecap="round"/>
+        <path class="fp-detail" d="M42 93C46 96 52 98 60 98C68 98 74 96 78 93" stroke="white" stroke-width="0.8" stroke-linecap="round"/>
         
-        <!-- Center core dot -->
-        <circle class="fp-core" cx="60" cy="59" r="1.5" fill="rgba(255,255,255,0.3)"/>
+        <!-- Life line -->
+        <path class="fp-core" d="M35 72C33 65 32 55 34 48" stroke="white" stroke-width="0.6" stroke-linecap="round"/>
+        <path class="fp-core" d="M85 72C87 65 88 55 86 48" stroke="white" stroke-width="0.6" stroke-linecap="round"/>
+        
+        <!-- Center dot -->
+        <circle class="fp-core" cx="60" cy="61" r="1.5" fill="rgba(255,255,255,0.3)"/>
       </svg>
     </button>
 
