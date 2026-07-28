@@ -94,15 +94,16 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
 .mono{ font-family:'Nunito', sans-serif; font-weight:800; letter-spacing:.02em; }
 
 /* =========================================================
-   LANDING PAGE (Splash Screen)
+   LANDING PAGE - FUTURISTIC
 ========================================================= */
 .landing-overlay{
   position:fixed; inset:0; z-index:1000;
-  background:linear-gradient(135deg, #FF9FCB 0%, #FFC3E0 40%, #FFEAF4 70%, #8FE28A 100%);
+  background:#0a0a0f;
   display:flex; align-items:center; justify-content:center;
   flex-direction:column;
   transition:all 0.8s cubic-bezier(.23,1,.32,1);
   padding:20px;
+  overflow:hidden;
 }
 .landing-overlay.hidden{
   opacity:0;
@@ -110,181 +111,335 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
   pointer-events:none;
 }
 
+/* Futuristic grid background */
+.landing-overlay::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation:gridMove 20s linear infinite;
+}
+
+@keyframes gridMove{
+  0%{ transform:translate(0,0); }
+  100%{ transform:translate(50px,50px); }
+}
+
+/* Glowing orbs */
+.landing-overlay::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(100,200,255,0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(255,100,200,0.08) 0%, transparent 50%);
+  animation:orbPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes orbPulse{
+  0%{ opacity:0.5; }
+  100%{ opacity:1; }
+}
+
 .landing-content{
   text-align:center;
-  max-width:500px;
-  animation:floatUp 1.2s ease-out forwards;
+  max-width:600px;
   position:relative;
+  z-index:2;
 }
 
-@keyframes floatUp{
-  0%{ opacity:0; transform:translateY(40px) scale(.95); }
-  100%{ opacity:1; transform:translateY(0) scale(1); }
-}
-
-.landing-logo{
-  font-size:6rem;
-  margin-bottom:8px;
-  display:inline-block;
-  animation:handPulse 2.2s ease-in-out infinite;
-  filter:drop-shadow(0 16px 40px rgba(200,30,114,.25));
-}
-
-@keyframes handPulse{
-  0%,100%{ transform:scale(1) rotate(0deg); }
-  25%{ transform:scale(1.1) rotate(-8deg); }
-  50%{ transform:scale(1.05) rotate(0deg); }
-  75%{ transform:scale(1.1) rotate(8deg); }
-}
-
+/* Futuristic title */
 .landing-title{
   font-family:'Baloo 2', sans-serif;
-  font-size:2.4rem;
+  font-size:2.8rem;
   font-weight:800;
-  color:#C81E72;
-  margin-bottom:4px;
-  line-height:1.2;
-  text-shadow:0 4px 20px rgba(200,30,114,.15);
+  background:linear-gradient(135deg, #ffffff 0%, #a0c0ff 40%, #ff80b0 70%, #ffffff 100%);
+  background-size:200% 200%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:gradientShift 4s ease-in-out infinite alternate;
+  margin-bottom:2px;
+  letter-spacing:2px;
+}
+
+@keyframes gradientShift{
+  0%{ background-position:0% 50%; }
+  100%{ background-position:100% 50%; }
 }
 
 .landing-sub{
   font-family:'Nunito', sans-serif;
-  font-size:1.05rem;
-  font-weight:600;
-  color:#7C6D95;
-  margin-bottom:20px;
+  font-size:1.1rem;
+  font-weight:400;
+  color:rgba(255,255,255,0.5);
+  letter-spacing:4px;
+  text-transform:uppercase;
+  margin-bottom:6px;
 }
 
-.landing-deco{
-  display:flex;
-  gap:12px;
-  justify-content:center;
-  margin-bottom:18px;
-  font-size:1.6rem;
-}
-.landing-deco span{
-  animation:bounceYsm 2.6s ease-in-out infinite;
-}
-.landing-deco span:nth-child(2){ animation-delay:.2s; }
-.landing-deco span:nth-child(3){ animation-delay:.4s; }
-.landing-deco span:nth-child(4){ animation-delay:.6s; }
-.landing-deco span:nth-child(5){ animation-delay:.8s; }
-
-/* Tombol Telapak Tangan */
-.hand-btn{
-  background:linear-gradient(135deg, var(--marigold), #FFA726);
-  border:none;
-  border-radius:80px;
-  padding:18px 40px 18px 32px;
-  display:inline-flex;
-  align-items:center;
-  gap:16px;
-  color:#fff;
-  font-family:'Baloo 2', sans-serif;
-  font-size:1.3rem;
-  font-weight:700;
-  cursor:pointer;
-  box-shadow:0 12px 40px rgba(255,184,51,.45);
-  transition:all 0.3s cubic-bezier(.23,1,.32,1);
+.landing-divider{
+  width:120px;
+  height:2px;
+  margin:10px auto 8px;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
   position:relative;
-  overflow:hidden;
-  touch-action:manipulation;
 }
 
-.hand-btn:hover{
-  transform:translateY(-4px) scale(1.02);
-  box-shadow:0 20px 50px rgba(255,184,51,.55);
-}
-
-.hand-btn:active{
-  transform:scale(.95);
-}
-
-.hand-btn .hand-icon{
-  font-size:2.2rem;
-  display:inline-block;
-  animation:handWiggle 1.8s ease-in-out infinite;
-}
-
-@keyframes handWiggle{
-  0%,100%{ transform:rotate(0deg); }
-  25%{ transform:rotate(-12deg); }
-  75%{ transform:rotate(12deg); }
-}
-
-.hand-btn .ripple{
+.landing-divider::after{
+  content:'◆';
   position:absolute;
-  border-radius:50%;
-  background:rgba(255,255,255,.3);
-  transform:scale(0);
-  animation:rippleEffect .8s ease-out forwards;
-  pointer-events:none;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  color:rgba(255,255,255,0.15);
+  font-size:0.6rem;
 }
 
-@keyframes rippleEffect{
-  to{
-    transform:scale(4);
+.landing-org{
+  font-family:'Nunito', sans-serif;
+  font-size:0.75rem;
+  font-weight:300;
+  color:rgba(255,255,255,0.25);
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-bottom:30px;
+}
+
+/* === FINGERPRINT BUTTON === */
+.fingerprint-btn {
+  position:relative;
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,0.15);
+  background:transparent;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 16px;
+  transition:all 0.4s cubic-bezier(.23,1,.32,1);
+  touch-action:manipulation;
+  outline:none;
+}
+
+.fingerprint-btn:hover {
+  border-color:rgba(255,255,255,0.3);
+  transform:scale(1.03);
+}
+
+.fingerprint-btn:active {
+  transform:scale(0.95);
+}
+
+/* Ring animation */
+.fingerprint-btn .ring {
+  position:absolute;
+  inset:-4px;
+  border-radius:50%;
+  border:2px solid transparent;
+  transition:all 0.6s ease;
+}
+
+.fingerprint-btn .ring-1 {
+  border-color:rgba(100,200,255,0.1);
+  animation:ringPulse 3s ease-in-out infinite;
+}
+
+.fingerprint-btn .ring-2 {
+  border-color:rgba(255,100,200,0.08);
+  animation:ringPulse 3s ease-in-out infinite 1s;
+}
+
+.fingerprint-btn .ring-3 {
+  border-color:rgba(100,255,200,0.06);
+  animation:ringPulse 3s ease-in-out infinite 2s;
+}
+
+@keyframes ringPulse {
+  0%, 100% {
+    transform:scale(1);
+    opacity:0.3;
+  }
+  50% {
+    transform:scale(1.15);
     opacity:0;
   }
 }
 
-.hand-btn .btn-text{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  line-height:1.2;
+/* SVG Fingerprint */
+.fingerprint-btn svg {
+  width:70px;
+  height:70px;
+  position:relative;
+  z-index:2;
+  transition:all 0.6s cubic-bezier(.23,1,.32,1);
 }
 
-.hand-btn .btn-text small{
-  font-family:'Nunito', sans-serif;
-  font-size:.65rem;
-  font-weight:600;
-  opacity:.85;
-  letter-spacing:.04em;
+.fingerprint-btn svg .fp-path {
+  fill:none;
+  stroke:rgba(255,255,255,0.4);
+  stroke-width:2.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  transition:all 0.6s cubic-bezier(.23,1,.32,1);
 }
 
-.hand-btn .arrow-bounce{
-  display:inline-block;
-  animation:arrowMove 1.2s ease-in-out infinite;
-  font-size:1.1rem;
+.fingerprint-btn svg .fp-path-inner {
+  fill:none;
+  stroke:rgba(255,255,255,0.2);
+  stroke-width:1.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  transition:all 0.6s cubic-bezier(.23,1,.32,1);
 }
 
-@keyframes arrowMove{
-  0%,100%{ transform:translateX(0); }
-  50%{ transform:translateX(8px); }
+/* Hover state */
+.fingerprint-btn:hover svg .fp-path {
+  stroke:rgba(255,255,255,0.6);
 }
 
-/* Particle efek di landing */
-.landing-particles{
+/* Active/Scanning animation */
+.fingerprint-btn.scanning svg .fp-path {
+  stroke:#ffffff;
+  stroke-width:3;
+  filter:drop-shadow(0 0 20px rgba(255,255,255,0.3));
+}
+
+.fingerprint-btn.scanning svg .fp-path-inner {
+  stroke:rgba(255,255,255,0.5);
+}
+
+.fingerprint-btn.scanning {
+  border-color:rgba(255,255,255,0.4);
+  box-shadow:
+    0 0 40px rgba(100,200,255,0.15),
+    inset 0 0 40px rgba(100,200,255,0.05);
+}
+
+/* Scan line animation */
+.fingerprint-btn .scan-line {
+  position:absolute;
+  width:70%;
+  height:2px;
+  background:linear-gradient(90deg, transparent, #ffffff, transparent);
+  opacity:0;
+  transition:all 0.3s ease;
+  z-index:3;
+}
+
+.fingerprint-btn.scanning .scan-line {
+  opacity:1;
+  animation:scanDown 0.8s ease-in-out infinite;
+}
+
+@keyframes scanDown {
+  0% {
+    top:25%;
+    opacity:0;
+  }
+  20% {
+    opacity:1;
+  }
+  80% {
+    opacity:1;
+  }
+  100% {
+    top:75%;
+    opacity:0;
+  }
+}
+
+/* Color transition on click (black to white) */
+.fingerprint-btn .color-wave {
   position:absolute;
   inset:0;
-  overflow:hidden;
-  pointer-events:none;
-}
-.landing-particles span{
-  position:absolute;
-  display:block;
-  width:6px;
-  height:6px;
   border-radius:50%;
-  background:rgba(255,255,255,.3);
-  animation:particleFloat 8s linear infinite;
+  opacity:0;
+  transition:all 0.8s ease;
+  pointer-events:none;
+  z-index:1;
 }
-.landing-particles span:nth-child(1){ left:10%; animation-delay:0s; animation-duration:7s; }
-.landing-particles span:nth-child(2){ left:20%; animation-delay:1.5s; animation-duration:9s; }
-.landing-particles span:nth-child(3){ left:30%; animation-delay:.8s; animation-duration:8s; }
-.landing-particles span:nth-child(4){ left:40%; animation-delay:2s; animation-duration:6.5s; }
-.landing-particles span:nth-child(5){ left:50%; animation-delay:.3s; animation-duration:8.5s; }
-.landing-particles span:nth-child(6){ left:60%; animation-delay:1.2s; animation-duration:7.5s; }
-.landing-particles span:nth-child(7){ left:70%; animation-delay:1.8s; animation-duration:9s; }
-.landing-particles span:nth-child(8){ left:80%; animation-delay:.6s; animation-duration:8s; }
-.landing-particles span:nth-child(9){ left:90%; animation-delay:2.2s; animation-duration:7s; }
 
-@keyframes particleFloat{
-  0%{ transform:translateY(100vh) scale(0); opacity:0; }
-  20%{ opacity:1; }
-  80%{ opacity:1; }
-  100%{ transform:translateY(-20vh) scale(1); opacity:0; }
+.fingerprint-btn .color-wave.active {
+  opacity:1;
+  animation:colorWave 0.8s ease-out forwards;
+}
+
+@keyframes colorWave {
+  0% {
+    background:rgba(255,255,255,0);
+    transform:scale(0.8);
+  }
+  30% {
+    background:rgba(255,255,255,0.15);
+    transform:scale(1.1);
+  }
+  60% {
+    background:rgba(255,255,255,0.25);
+    transform:scale(1.05);
+  }
+  100% {
+    background:rgba(255,255,255,0);
+    transform:scale(1.3);
+    opacity:0;
+  }
+}
+
+/* Success glow */
+.fingerprint-btn.success {
+  border-color:rgba(100,255,200,0.5);
+  box-shadow:
+    0 0 60px rgba(100,255,200,0.2),
+    0 0 120px rgba(100,255,200,0.1);
+}
+
+.fingerprint-btn.success svg .fp-path {
+  stroke:#80ffc0;
+  filter:drop-shadow(0 0 30px rgba(100,255,200,0.3));
+}
+
+/* Button label */
+.fingerprint-label {
+  font-family:'Nunito', sans-serif;
+  font-size:0.7rem;
+  font-weight:400;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.2);
+  transition:all 0.4s ease;
+  margin-top:4px;
+}
+
+.fingerprint-btn:hover + .fingerprint-label {
+  color:rgba(255,255,255,0.4);
+}
+
+/* Status text */
+.fingerprint-status {
+  font-family:'Nunito', sans-serif;
+  font-size:0.65rem;
+  font-weight:300;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.15);
+  margin-top:8px;
+  min-height:20px;
+  transition:all 0.4s ease;
+}
+
+.fingerprint-status.active {
+  color:rgba(255,255,255,0.4);
+  animation:statusPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+  0%, 100% { opacity:0.4; }
+  50% { opacity:1; }
 }
 
 /* =========================================================
@@ -609,12 +764,14 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
   width:58px;
   height:58px;
   border-radius:50%;
-  border:none;
-  background:var(--marigold);
+  border:2px solid rgba(255,255,255,0.1);
+  background:rgba(10,10,15,0.6);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
   color:#fff;
   font-size:1.4rem;
   cursor:pointer;
-  box-shadow:0 8px 30px rgba(255,184,51,.45);
+  box-shadow:0 8px 30px rgba(0,0,0,0.5);
   transition:all 0.3s cubic-bezier(.23,1,.32,1);
   display:flex;
   align-items:center;
@@ -633,8 +790,9 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
 }
 
 .music-toggle:hover{
-  transform:scale(1.08) rotate(-4deg);
-  box-shadow:0 12px 40px rgba(255,184,51,.55);
+  transform:scale(1.08);
+  border-color:rgba(255,255,255,0.3);
+  box-shadow:0 12px 40px rgba(0,0,0,0.6);
 }
 
 .music-toggle:active{
@@ -642,19 +800,15 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
 }
 
 .music-toggle.playing{
-  background:var(--teal);
-  box-shadow:0 8px 30px rgba(41,196,224,.45);
-}
-
-.music-toggle.playing:hover{
-  box-shadow:0 12px 40px rgba(41,196,224,.55);
+  border-color:rgba(100,255,200,0.3);
+  box-shadow:0 0 30px rgba(100,255,200,0.1);
 }
 
 .music-toggle .pulse-ring{
   position:absolute;
   inset:-4px;
   border-radius:50%;
-  border:2px solid currentColor;
+  border:2px solid rgba(100,255,200,0.3);
   opacity:0;
   animation:pulseRing 2s ease-out infinite;
 }
@@ -665,7 +819,7 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
 
 @keyframes pulseRing{
   0%{ transform:scale(1); opacity:0.6; }
-  100%{ transform:scale(1.3); opacity:0; }
+  100%{ transform:scale(1.4); opacity:0; }
 }
 
 /* =========================================================
@@ -726,11 +880,11 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
   .stepper .step-label{ font-size:.58rem; }
   .nav-controls{ gap:6px; margin-top:14px; }
 
-  .landing-title{ font-size:1.8rem; }
-  .landing-logo{ font-size:4.5rem; }
-  .hand-btn{ padding:14px 28px 14px 22px; font-size:1.1rem; }
-  .hand-btn .hand-icon{ font-size:1.8rem; }
-
+  .landing-title{ font-size:2rem; }
+  .fingerprint-btn{ width:110px; height:110px; }
+  .fingerprint-btn svg{ width:55px; height:55px; }
+  .fingerprint-label{ font-size:0.6rem; }
+  
   .music-toggle{
     width:50px;
     height:50px;
@@ -763,11 +917,11 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
   .modal-inner{ padding:12px 14px 16px; }
   .modal-title{ font-size:1rem; }
 
-  .landing-title{ font-size:1.5rem; }
-  .landing-logo{ font-size:3.8rem; }
-  .hand-btn{ padding:12px 20px 12px 16px; font-size:.95rem; }
-  .hand-btn .hand-icon{ font-size:1.5rem; }
-  .hand-btn .btn-text small{ font-size:.55rem; }
+  .landing-title{ font-size:1.6rem; }
+  .landing-sub{ font-size:0.85rem; letter-spacing:2px; }
+  .fingerprint-btn{ width:90px; height:90px; }
+  .fingerprint-btn svg{ width:45px; height:45px; }
+  .fingerprint-status{ font-size:0.55rem; }
 
   .music-toggle{
     width:44px;
@@ -891,34 +1045,39 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
 </head>
 <body>
 
-<!-- ===== LANDING PAGE ===== -->
+<!-- ===== LANDING PAGE - FUTURISTIC ===== -->
 <div class="landing-overlay" id="landingOverlay">
-  <div class="landing-particles">
-    <span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span>
-  </div>
   <div class="landing-content">
-    <div class="landing-deco">
-      <span>🎈</span>
-      <span>✨</span>
-      <span>🌟</span>
-      <span>🎈</span>
-      <span>✨</span>
-    </div>
-    <div class="landing-logo">🖐️</div>
     <h1 class="landing-title">Buku Saku Lapangan</h1>
     <p class="landing-sub">10 Permainan Tradisional · Anti-Stunting</p>
-    <p style="font-family:'Nunito'; font-size:.85rem; color:#7C6D95; margin-bottom:20px; max-width:320px; margin-left:auto; margin-right:auto; line-height:1.5;">
-      KKN Kelompok 13 · Universitas Muhammadiyah Sukabumi 2026
-    </p>
-    <button class="hand-btn" id="enterBtn">
-      <span class="hand-icon">🖐️</span>
-      <span class="btn-text">
-        Masuk ke Website
-        <small>Klik untuk mulai</small>
-      </span>
-      <span class="arrow-bounce">→</span>
+    <div class="landing-divider"></div>
+    <p class="landing-org">KKN Kelompok 13 · Universitas Muhammadiyah Sukabumi 2026</p>
+
+    <!-- Fingerprint Button -->
+    <button class="fingerprint-btn" id="enterBtn" aria-label="Scan fingerprint to enter">
+      <span class="ring ring-1"></span>
+      <span class="ring ring-2"></span>
+      <span class="ring ring-3"></span>
+      <span class="color-wave" id="colorWave"></span>
+      <span class="scan-line"></span>
+      <!-- SVG Fingerprint -->
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="fp-path" d="M50 10C30 10 15 25 15 45V55C15 65 20 75 30 80C35 82.5 40 85 40 90C40 95 35 100 30 100C25 100 20 95 20 90V80" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <path class="fp-path" d="M50 10C70 10 85 25 85 45V55C85 65 80 75 70 80C65 82.5 60 85 60 90C60 95 65 100 70 100C75 100 80 95 80 90V80" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <path class="fp-path" d="M50 30C40 30 32 38 32 48V58C32 68 38 76 45 80C48 82 50 85 50 88" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <path class="fp-path-inner" d="M50 30C60 30 68 38 68 48V58C68 68 62 76 55 80" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <path class="fp-path-inner" d="M40 50C40 45 44 42 50 42C56 42 60 45 60 50V58C60 63 56 66 50 66C44 66 40 63 40 58V50Z" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <path class="fp-path" d="M30 55C30 45 38 38 50 38C62 38 70 45 70 55V60" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <path class="fp-path" d="M35 55C35 48 42 44 50 44C58 44 65 48 65 55" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <path class="fp-path" d="M42 55C42 52 45 50 50 50C55 50 58 52 58 55" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <path class="fp-path" d="M50 88V95" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="50" cy="98" r="2" fill="rgba(255,255,255,0.3)"/>
+      </svg>
+      <span class="color-wave" id="colorWave2"></span>
     </button>
+
+    <p class="fingerprint-label">Scan untuk masuk</p>
+    <p class="fingerprint-status" id="fingerprintStatus">▸ siap dipindai</p>
   </div>
 </div>
 
@@ -1153,50 +1312,77 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
 (function(){
 
   /* =========================================================
-     LANDING PAGE
+     LANDING PAGE - FUTURISTIC
   ========================================================== */
   const landingOverlay = document.getElementById('landingOverlay');
   const enterBtn = document.getElementById('enterBtn');
   const mainContainer = document.getElementById('mainContainer');
   const musicToggle = document.getElementById('musicToggle');
+  const fingerprintStatus = document.getElementById('fingerprintStatus');
+  const colorWave = document.getElementById('colorWave');
+  const colorWave2 = document.getElementById('colorWave2');
 
-  // Ripple effect on button click
-  enterBtn.addEventListener('click', function(e) {
-    // Create ripple
-    const ripple = document.createElement('span');
-    ripple.className = 'ripple';
-    const rect = this.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
-    ripple.style.width = ripple.style.height = size + 'px';
-    ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
-    ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
-    this.appendChild(ripple);
-    setTimeout(() => ripple.remove(), 800);
-  });
-
-  // Enter website
-  function enterWebsite() {
-    landingOverlay.classList.add('hidden');
-    mainContainer.classList.add('visible');
-    musicToggle.classList.add('show');
-    
-    // Start music after landing
-    setTimeout(function() {
-      if (audioPlayer) {
-        audioPlayer.play().catch(function(e) {
-          console.log('Music will start on user interaction');
-        });
-        isPlaying = true;
-        updateMusicButton();
-      }
-    }, 400);
+  // Status update function
+  function updateStatus(text, isActive) {
+    fingerprintStatus.textContent = text;
+    if (isActive) {
+      fingerprintStatus.classList.add('active');
+    } else {
+      fingerprintStatus.classList.remove('active');
+    }
   }
 
-  enterBtn.addEventListener('click', enterWebsite);
-  enterBtn.addEventListener('touchend', function(e) {
-    e.preventDefault();
+  // Enter website function
+  function enterWebsite() {
+    // Start scanning animation
+    enterBtn.classList.add('scanning');
+    updateStatus('▸ memindai sidik jari...', true);
+    
+    // Create color wave effect (black to white)
+    colorWave.classList.add('active');
+    colorWave2.classList.add('active');
+    
+    // Success after animation
+    setTimeout(function() {
+      enterBtn.classList.add('success');
+      updateStatus('✓ akses diberikan', false);
+      
+      // Hide landing and show content after delay
+      setTimeout(function() {
+        landingOverlay.classList.add('hidden');
+        mainContainer.classList.add('visible');
+        musicToggle.classList.add('show');
+        
+        // Start music after landing
+        setTimeout(function() {
+          if (audioPlayer) {
+            audioPlayer.play().catch(function(e) {
+              console.log('Music will start on user interaction');
+            });
+            isPlaying = true;
+            updateMusicButton();
+          }
+        }, 400);
+      }, 400);
+    }, 1200);
+  }
+
+  // Button click handler
+  enterBtn.addEventListener('click', function(e) {
+    // Prevent multiple clicks
+    if (this.classList.contains('scanning')) return;
     enterWebsite();
   });
+
+  // Touch support
+  enterBtn.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    if (this.classList.contains('scanning')) return;
+    enterWebsite();
+  });
+
+  // Initial status
+  updateStatus('▸ siap dipindai', false);
 
   /* =========================================================
      AUDIO PLAYER - MP3 Background Music
@@ -1256,9 +1442,6 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
   document.addEventListener('DOMContentLoaded', function() {
     initAudio();
   });
-
-  // Auto-play attempt after landing (will work if user interacted with enter button)
-  // The enter button click already triggers play
 
   /* =========================================================
      DATA PERMAINAN
