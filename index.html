@@ -129,19 +129,36 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
 }
 
 /* Glowing orbs */
-.landing-overlay::after{
-  content:'';
+.landing-overlay .orb{
   position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle at 20% 50%, rgba(100,200,255,0.08) 0%, transparent 50%),
-    radial-gradient(circle at 80% 50%, rgba(255,100,200,0.08) 0%, transparent 50%);
-  animation:orbPulse 4s ease-in-out infinite alternate;
+  border-radius:50%;
+  filter:blur(80px);
+  pointer-events:none;
+}
+.landing-overlay .orb-1{
+  width:300px;
+  height:300px;
+  top:-50px;
+  right:-50px;
+  background:rgba(100,200,255,0.08);
+  animation:orbFloat1 6s ease-in-out infinite alternate;
+}
+.landing-overlay .orb-2{
+  width:400px;
+  height:400px;
+  bottom:-100px;
+  left:-100px;
+  background:rgba(255,100,200,0.08);
+  animation:orbFloat2 8s ease-in-out infinite alternate;
 }
 
-@keyframes orbPulse{
-  0%{ opacity:0.5; }
-  100%{ opacity:1; }
+@keyframes orbFloat1{
+  0%{ transform:translate(0,0) scale(1); }
+  100%{ transform:translate(-30px,30px) scale(1.1); }
+}
+@keyframes orbFloat2{
+  0%{ transform:translate(0,0) scale(1); }
+  100%{ transform:translate(30px,-30px) scale(1.1); }
 }
 
 .landing-content{
@@ -209,14 +226,14 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
   margin-bottom:30px;
 }
 
-/* === FINGERPRINT BUTTON === */
+/* === FINGERPRINT BUTTON - IMPROVED === */
 .fingerprint-btn {
   position:relative;
-  width:140px;
-  height:140px;
+  width:150px;
+  height:150px;
   border-radius:50%;
-  border:2px solid rgba(255,255,255,0.15);
-  background:transparent;
+  border:1.5px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.02);
   cursor:pointer;
   display:flex;
   align-items:center;
@@ -228,133 +245,156 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
 }
 
 .fingerprint-btn:hover {
-  border-color:rgba(255,255,255,0.3);
-  transform:scale(1.03);
+  border-color:rgba(255,255,255,0.15);
+  transform:scale(1.02);
+  background:rgba(255,255,255,0.04);
 }
 
 .fingerprint-btn:active {
   transform:scale(0.95);
 }
 
-/* Ring animation */
+/* Outer rings */
 .fingerprint-btn .ring {
   position:absolute;
-  inset:-4px;
   border-radius:50%;
-  border:2px solid transparent;
+  border:1px solid transparent;
   transition:all 0.6s ease;
 }
 
 .fingerprint-btn .ring-1 {
-  border-color:rgba(100,200,255,0.1);
-  animation:ringPulse 3s ease-in-out infinite;
+  inset:-8px;
+  border-color:rgba(100,200,255,0.06);
+  animation:ringPulse1 3s ease-in-out infinite;
 }
 
 .fingerprint-btn .ring-2 {
-  border-color:rgba(255,100,200,0.08);
-  animation:ringPulse 3s ease-in-out infinite 1s;
+  inset:-16px;
+  border-color:rgba(255,100,200,0.04);
+  animation:ringPulse1 3s ease-in-out infinite 1s;
 }
 
 .fingerprint-btn .ring-3 {
-  border-color:rgba(100,255,200,0.06);
-  animation:ringPulse 3s ease-in-out infinite 2s;
+  inset:-24px;
+  border-color:rgba(100,255,200,0.03);
+  animation:ringPulse1 3s ease-in-out infinite 2s;
 }
 
-@keyframes ringPulse {
+@keyframes ringPulse1 {
   0%, 100% {
     transform:scale(1);
     opacity:0.3;
   }
   50% {
-    transform:scale(1.15);
+    transform:scale(1.1);
     opacity:0;
   }
 }
 
-/* SVG Fingerprint */
+/* SVG Fingerprint - Realistic */
 .fingerprint-btn svg {
-  width:70px;
-  height:70px;
+  width:80px;
+  height:80px;
   position:relative;
   z-index:2;
   transition:all 0.6s cubic-bezier(.23,1,.32,1);
 }
 
-.fingerprint-btn svg .fp-path {
+/* All fingerprint path styles */
+.fingerprint-btn svg .fp-main {
   fill:none;
-  stroke:rgba(255,255,255,0.4);
+  stroke:rgba(255,255,255,0.25);
   stroke-width:2.5;
   stroke-linecap:round;
   stroke-linejoin:round;
-  transition:all 0.6s cubic-bezier(.23,1,.32,1);
+  transition:all 0.6s ease;
 }
 
-.fingerprint-btn svg .fp-path-inner {
+.fingerprint-btn svg .fp-detail {
   fill:none;
-  stroke:rgba(255,255,255,0.2);
+  stroke:rgba(255,255,255,0.12);
   stroke-width:1.5;
   stroke-linecap:round;
   stroke-linejoin:round;
-  transition:all 0.6s cubic-bezier(.23,1,.32,1);
+  transition:all 0.6s ease;
 }
 
-/* Hover state */
-.fingerprint-btn:hover svg .fp-path {
-  stroke:rgba(255,255,255,0.6);
+.fingerprint-btn svg .fp-core {
+  fill:none;
+  stroke:rgba(255,255,255,0.08);
+  stroke-width:1;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  transition:all 0.6s ease;
 }
 
-/* Active/Scanning animation */
-.fingerprint-btn.scanning svg .fp-path {
+.fingerprint-btn:hover svg .fp-main {
+  stroke:rgba(255,255,255,0.35);
+}
+
+/* Scanning animation */
+.fingerprint-btn.scanning {
+  border-color:rgba(255,255,255,0.2);
+  background:rgba(255,255,255,0.04);
+  box-shadow:
+    0 0 60px rgba(100,200,255,0.05),
+    inset 0 0 60px rgba(100,200,255,0.02);
+}
+
+.fingerprint-btn.scanning svg .fp-main {
   stroke:#ffffff;
   stroke-width:3;
-  filter:drop-shadow(0 0 20px rgba(255,255,255,0.3));
+  filter:drop-shadow(0 0 20px rgba(255,255,255,0.15));
 }
 
-.fingerprint-btn.scanning svg .fp-path-inner {
-  stroke:rgba(255,255,255,0.5);
+.fingerprint-btn.scanning svg .fp-detail {
+  stroke:rgba(255,255,255,0.3);
 }
 
-.fingerprint-btn.scanning {
-  border-color:rgba(255,255,255,0.4);
-  box-shadow:
-    0 0 40px rgba(100,200,255,0.15),
-    inset 0 0 40px rgba(100,200,255,0.05);
+.fingerprint-btn.scanning svg .fp-core {
+  stroke:rgba(255,255,255,0.2);
 }
 
-/* Scan line animation */
+/* Scan line */
 .fingerprint-btn .scan-line {
   position:absolute;
-  width:70%;
+  width:65%;
   height:2px;
-  background:linear-gradient(90deg, transparent, #ffffff, transparent);
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
   opacity:0;
   transition:all 0.3s ease;
   z-index:3;
+  border-radius:2px;
+  box-shadow:0 0 20px rgba(255,255,255,0.1);
 }
 
 .fingerprint-btn.scanning .scan-line {
   opacity:1;
-  animation:scanDown 0.8s ease-in-out infinite;
+  animation:scanDown 1.2s ease-in-out infinite;
 }
 
 @keyframes scanDown {
   0% {
-    top:25%;
+    top:18%;
     opacity:0;
+    transform:scaleX(0.8);
   }
   20% {
     opacity:1;
+    transform:scaleX(1);
   }
   80% {
     opacity:1;
+    transform:scaleX(1);
   }
   100% {
-    top:75%;
+    top:82%;
     opacity:0;
+    transform:scaleX(0.8);
   }
 }
 
-/* Color transition on click (black to white) */
+/* Color wave effect */
 .fingerprint-btn .color-wave {
   position:absolute;
   inset:0;
@@ -366,80 +406,144 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
 }
 
 .fingerprint-btn .color-wave.active {
-  opacity:1;
-  animation:colorWave 0.8s ease-out forwards;
+  animation:colorWave 5s ease-out forwards;
 }
 
 @keyframes colorWave {
   0% {
-    background:rgba(255,255,255,0);
-    transform:scale(0.8);
+    background:radial-gradient(circle, rgba(255,255,255,0) 30%, transparent 70%);
+    transform:scale(0.5);
+    opacity:0;
+  }
+  10% {
+    background:radial-gradient(circle, rgba(255,255,255,0.15) 20%, rgba(255,255,255,0.05) 50%, transparent 70%);
+    opacity:1;
   }
   30% {
-    background:rgba(255,255,255,0.15);
-    transform:scale(1.1);
+    background:radial-gradient(circle, rgba(255,255,255,0.25) 30%, rgba(255,255,255,0.1) 60%, transparent 80%);
+    opacity:1;
   }
-  60% {
-    background:rgba(255,255,255,0.25);
-    transform:scale(1.05);
+  50% {
+    background:radial-gradient(circle, rgba(200,230,255,0.3) 40%, rgba(255,200,230,0.15) 70%, transparent 90%);
+    opacity:1;
+  }
+  70% {
+    background:radial-gradient(circle, rgba(255,255,255,0.2) 50%, rgba(200,230,255,0.1) 80%, transparent 95%);
+    opacity:0.8;
   }
   100% {
-    background:rgba(255,255,255,0);
-    transform:scale(1.3);
+    background:radial-gradient(circle, rgba(255,255,255,0) 70%, transparent 100%);
+    transform:scale(1.8);
     opacity:0;
   }
 }
 
-/* Success glow */
+/* Success state */
 .fingerprint-btn.success {
-  border-color:rgba(100,255,200,0.5);
+  border-color:rgba(100,255,200,0.3);
   box-shadow:
-    0 0 60px rgba(100,255,200,0.2),
-    0 0 120px rgba(100,255,200,0.1);
+    0 0 80px rgba(100,255,200,0.08),
+    0 0 160px rgba(100,255,200,0.04);
+  background:rgba(100,255,200,0.03);
 }
 
-.fingerprint-btn.success svg .fp-path {
+.fingerprint-btn.success svg .fp-main {
   stroke:#80ffc0;
-  filter:drop-shadow(0 0 30px rgba(100,255,200,0.3));
+  stroke-width:2.5;
+  filter:drop-shadow(0 0 30px rgba(100,255,200,0.15));
 }
 
-/* Button label */
+.fingerprint-btn.success svg .fp-detail {
+  stroke:rgba(100,255,200,0.3);
+}
+
+/* Label */
 .fingerprint-label {
   font-family:'Nunito', sans-serif;
   font-size:0.7rem;
   font-weight:400;
   letter-spacing:3px;
   text-transform:uppercase;
-  color:rgba(255,255,255,0.2);
+  color:rgba(255,255,255,0.15);
   transition:all 0.4s ease;
   margin-top:4px;
 }
 
 .fingerprint-btn:hover + .fingerprint-label {
-  color:rgba(255,255,255,0.4);
+  color:rgba(255,255,255,0.3);
 }
 
-/* Status text */
+/* Status */
 .fingerprint-status {
   font-family:'Nunito', sans-serif;
   font-size:0.65rem;
   font-weight:300;
   letter-spacing:2px;
   text-transform:uppercase;
-  color:rgba(255,255,255,0.15);
+  color:rgba(255,255,255,0.12);
   margin-top:8px;
   min-height:20px;
   transition:all 0.4s ease;
 }
 
 .fingerprint-status.active {
-  color:rgba(255,255,255,0.4);
+  color:rgba(255,255,255,0.35);
   animation:statusPulse 1.2s ease-in-out infinite;
 }
 
 @keyframes statusPulse {
-  0%, 100% { opacity:0.4; }
+  0%, 100% { opacity:0.3; }
   50% { opacity:1; }
+}
+
+.fingerprint-status.success {
+  color:rgba(100,255,200,0.5);
+  animation:none;
+}
+
+/* Progress ring */
+.fingerprint-btn .progress-ring {
+  position:absolute;
+  inset:-6px;
+  border-radius:50%;
+  z-index:0;
+}
+
+.fingerprint-btn .progress-ring svg {
+  width:100%;
+  height:100%;
+  transform:rotate(-90deg);
+}
+
+.fingerprint-btn .progress-ring .progress-bg {
+  fill:none;
+  stroke:rgba(255,255,255,0.04);
+  stroke-width:2;
+}
+
+.fingerprint-btn .progress-ring .progress-fill {
+  fill:none;
+  stroke:rgba(255,255,255,0.15);
+  stroke-width:2;
+  stroke-linecap:round;
+  transition:stroke-dashoffset 0.1s linear;
+  stroke-dasharray: 440;
+  stroke-dashoffset: 440;
+}
+
+.fingerprint-btn.scanning .progress-ring .progress-fill {
+  animation:progressSpin 5s linear forwards;
+}
+
+@keyframes progressSpin {
+  0% { stroke-dashoffset: 440; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.fingerprint-btn.success .progress-ring .progress-fill {
+  stroke:rgba(100,255,200,0.3);
+  stroke-dashoffset: 0;
+  transition:stroke-dashoffset 0.5s ease;
 }
 
 /* =========================================================
@@ -881,8 +985,8 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
   .nav-controls{ gap:6px; margin-top:14px; }
 
   .landing-title{ font-size:2rem; }
-  .fingerprint-btn{ width:110px; height:110px; }
-  .fingerprint-btn svg{ width:55px; height:55px; }
+  .fingerprint-btn{ width:120px; height:120px; }
+  .fingerprint-btn svg{ width:60px; height:60px; }
   .fingerprint-label{ font-size:0.6rem; }
   
   .music-toggle{
@@ -919,8 +1023,8 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
 
   .landing-title{ font-size:1.6rem; }
   .landing-sub{ font-size:0.85rem; letter-spacing:2px; }
-  .fingerprint-btn{ width:90px; height:90px; }
-  .fingerprint-btn svg{ width:45px; height:45px; }
+  .fingerprint-btn{ width:100px; height:100px; }
+  .fingerprint-btn svg{ width:50px; height:50px; }
   .fingerprint-status{ font-size:0.55rem; }
 
   .music-toggle{
@@ -1047,33 +1151,73 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
 
 <!-- ===== LANDING PAGE - FUTURISTIC ===== -->
 <div class="landing-overlay" id="landingOverlay">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  
   <div class="landing-content">
     <h1 class="landing-title">Buku Saku Lapangan</h1>
     <p class="landing-sub">10 Permainan Tradisional · Anti-Stunting</p>
     <div class="landing-divider"></div>
     <p class="landing-org">KKN Kelompok 13 · Universitas Muhammadiyah Sukabumi 2026</p>
 
-    <!-- Fingerprint Button -->
+    <!-- Fingerprint Button - Improved Design -->
     <button class="fingerprint-btn" id="enterBtn" aria-label="Scan fingerprint to enter">
+      <!-- Outer rings -->
       <span class="ring ring-1"></span>
       <span class="ring ring-2"></span>
       <span class="ring ring-3"></span>
+      
+      <!-- Color wave effect -->
       <span class="color-wave" id="colorWave"></span>
+      
+      <!-- Scan line -->
       <span class="scan-line"></span>
-      <!-- SVG Fingerprint -->
-      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path class="fp-path" d="M50 10C30 10 15 25 15 45V55C15 65 20 75 30 80C35 82.5 40 85 40 90C40 95 35 100 30 100C25 100 20 95 20 90V80" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-        <path class="fp-path" d="M50 10C70 10 85 25 85 45V55C85 65 80 75 70 80C65 82.5 60 85 60 90C60 95 65 100 70 100C75 100 80 95 80 90V80" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-        <path class="fp-path" d="M50 30C40 30 32 38 32 48V58C32 68 38 76 45 80C48 82 50 85 50 88" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-        <path class="fp-path-inner" d="M50 30C60 30 68 38 68 48V58C68 68 62 76 55 80" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-        <path class="fp-path-inner" d="M40 50C40 45 44 42 50 42C56 42 60 45 60 50V58C60 63 56 66 50 66C44 66 40 63 40 58V50Z" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-        <path class="fp-path" d="M30 55C30 45 38 38 50 38C62 38 70 45 70 55V60" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-        <path class="fp-path" d="M35 55C35 48 42 44 50 44C58 44 65 48 65 55" stroke="white" stroke-width="2" stroke-linecap="round"/>
-        <path class="fp-path" d="M42 55C42 52 45 50 50 50C55 50 58 52 58 55" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-        <path class="fp-path" d="M50 88V95" stroke="white" stroke-width="2" stroke-linecap="round"/>
-        <circle cx="50" cy="98" r="2" fill="rgba(255,255,255,0.3)"/>
+      
+      <!-- Progress ring -->
+      <span class="progress-ring">
+        <svg viewBox="0 0 150 150">
+          <circle class="progress-bg" cx="75" cy="75" r="70"/>
+          <circle class="progress-fill" cx="75" cy="75" r="70"/>
+        </svg>
+      </span>
+      
+      <!-- SVG Fingerprint - Realistic Design -->
+      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Main fingerprint lines - outer -->
+        <path class="fp-main" d="M60 15C40 15 25 30 25 50V65C25 75 30 85 40 90C45 93 50 97 50 102C50 107 45 112 40 112C35 112 30 107 30 102V90" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <path class="fp-main" d="M60 15C80 15 95 30 95 50V65C95 75 90 85 80 90C75 93 70 97 70 102C70 107 75 112 80 112C85 112 90 107 90 102V90" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        
+        <!-- Middle fingerprint lines -->
+        <path class="fp-main" d="M60 35C48 35 38 45 38 57V67C38 78 44 86 52 90C56 92 58 95 58 99" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <path class="fp-main" d="M60 35C72 35 82 45 82 57V67C82 78 76 86 68 90" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        
+        <!-- Inner detailed lines -->
+        <path class="fp-detail" d="M47 57C47 50 53 46 60 46C67 46 73 50 73 57V67C73 74 67 78 60 78C53 78 47 74 47 67V57Z" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        
+        <!-- Core details -->
+        <path class="fp-core" d="M53 57C53 53 57 51 60 51C63 51 67 53 67 57V62C67 66 63 68 60 68C57 68 53 66 53 62V57Z" stroke="white" stroke-width="1" stroke-linecap="round"/>
+        <circle class="fp-core" cx="60" cy="59" r="3" stroke="white" stroke-width="0.8"/>
+        
+        <!-- Additional fingerprint ridges -->
+        <path class="fp-detail" d="M30 55C30 40 43 30 60 30C77 30 90 40 90 55" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <path class="fp-detail" d="M33 58C33 45 46 37 60 37C74 37 87 45 87 58" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+        <path class="fp-detail" d="M36 61C36 50 48 44 60 44C72 44 84 50 84 61" stroke="white" stroke-width="1" stroke-linecap="round"/>
+        
+        <!-- Bottom loop -->
+        <path class="fp-detail" d="M39 64C39 55 49 50 60 50C71 50 81 55 81 64" stroke="white" stroke-width="0.8" stroke-linecap="round"/>
+        
+        <!-- Side ridges -->
+        <path class="fp-core" d="M25 60C25 48 40 38 60 38" stroke="white" stroke-width="0.8" stroke-linecap="round"/>
+        <path class="fp-core" d="M95 60C95 48 80 38 60 38" stroke="white" stroke-width="0.8" stroke-linecap="round"/>
+        
+        <!-- Bottom extension -->
+        <path class="fp-main" d="M58 99V106" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <path class="fp-main" d="M62 99V106" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <path class="fp-main" d="M60 106V112" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        
+        <!-- Center core dot -->
+        <circle class="fp-core" cx="60" cy="59" r="1.5" fill="rgba(255,255,255,0.3)"/>
       </svg>
-      <span class="color-wave" id="colorWave2"></span>
     </button>
 
     <p class="fingerprint-label">Scan untuk masuk</p>
@@ -1320,32 +1464,47 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
   const musicToggle = document.getElementById('musicToggle');
   const fingerprintStatus = document.getElementById('fingerprintStatus');
   const colorWave = document.getElementById('colorWave');
-  const colorWave2 = document.getElementById('colorWave2');
 
   // Status update function
-  function updateStatus(text, isActive) {
+  function updateStatus(text, isActive, isSuccess) {
     fingerprintStatus.textContent = text;
+    fingerprintStatus.classList.remove('active', 'success');
     if (isActive) {
       fingerprintStatus.classList.add('active');
-    } else {
-      fingerprintStatus.classList.remove('active');
+    }
+    if (isSuccess) {
+      fingerprintStatus.classList.add('success');
     }
   }
 
-  // Enter website function
+  // Enter website function - 5 seconds animation
   function enterWebsite() {
-    // Start scanning animation
+    // Prevent multiple clicks
+    if (enterBtn.classList.contains('scanning')) return;
+    
+    // Start scanning
     enterBtn.classList.add('scanning');
     updateStatus('▸ memindai sidik jari...', true);
     
-    // Create color wave effect (black to white)
-    colorWave.classList.add('active');
-    colorWave2.classList.add('active');
+    // Stage 1: Initial scan (1s)
+    setTimeout(function() {
+      updateStatus('▸ menganalisis pola...', true);
+    }, 1500);
     
-    // Success after animation
+    // Stage 2: Processing (2.5s)
+    setTimeout(function() {
+      updateStatus('▸ memverifikasi identitas...', true);
+    }, 3000);
+    
+    // Stage 3: Almost done (4s)
+    setTimeout(function() {
+      updateStatus('▸ mengakses sistem...', true);
+    }, 4200);
+    
+    // Success after 5 seconds
     setTimeout(function() {
       enterBtn.classList.add('success');
-      updateStatus('✓ akses diberikan', false);
+      updateStatus('✓ akses diberikan ✓', false, true);
       
       // Hide landing and show content after delay
       setTimeout(function() {
@@ -1363,8 +1522,8 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
             updateMusicButton();
           }
         }, 400);
-      }, 400);
-    }, 1200);
+      }, 500);
+    }, 5000);
   }
 
   // Button click handler
