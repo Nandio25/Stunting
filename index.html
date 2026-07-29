@@ -1274,53 +1274,48 @@ h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; font-weight:700; color:var(--woo
       
       <!-- Telapak tangan manusia -->
       <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Telapak (palm) -->
-        <path class="fp-main" d="M31 64C31 57 35.5 52 42 52H78C84.5 52 89 57 89 64V86C89 100 76.5 111 60 111C43.5 111 31 100 31 86Z"/>
+        <!-- Kontur telapak tangan manusia (satu garis menyatu) -->
+        <path class="fp-main" d="M36.5,55.5 L36.5,35.5 A5.5,5.5 0 0 1 47.5,35.5 L47.5,55
+          C48.3,57.6 49.5,57.6 50.3,55 L50.3,27.5 A5.75,5.75 0 0 1 61.8,27.5 L61.8,54
+          C62.6,56.6 63.5,56.6 64,54 L64,32.5 A5.5,5.5 0 0 1 75,32.5 L75,55.5
+          C75.8,58 76.1,58 76.3,55.8 L76.3,47 A4.75,4.75 0 0 1 85.8,47 L85.8,63
+          C87.6,71.5 88.4,79.5 86.4,87.5 C82.4,100.5 72,108.5 60,108.5
+          C48.5,108.5 39.4,103.5 35,95.5 C31.4,89.6 27.4,83 23.5,76.5
+          C21.3,72.9 22.6,68.5 26.2,66.9 C29.6,65.3 33.4,66.7 35.2,70
+          C36.4,72.4 37.3,74 38,75.5 C35.6,70.4 34.4,64.4 34.6,60
+          C34.7,57.5 35.4,56 36.5,55.5 Z"/>
 
-        <!-- Jari telunjuk -->
-        <path class="fp-main" d="M35 56V31.5C35 28.2 37.6 25.5 41 25.5C44.4 25.5 47 28.2 47 31.5V56"/>
-        <!-- Jari tengah -->
-        <path class="fp-main" d="M48.5 53V19.5C48.5 16.2 51.1 13.5 54.5 13.5C57.9 13.5 60.5 16.2 60.5 19.5V53"/>
-        <!-- Jari manis -->
-        <path class="fp-main" d="M62 53V23C62 19.7 64.6 17 68 17C71.4 17 74 19.7 74 23V53"/>
-        <!-- Jari kelingking -->
-        <path class="fp-main" d="M75.5 56V36C75.5 32.7 78.1 30 81.5 30C84.9 30 87.5 32.7 87.5 36V58"/>
-        <!-- Ibu jari -->
-        <path class="fp-main" d="M32 82L20.5 67.5C18.5 64.9 19 61.2 21.6 59.2C24.2 57.2 27.9 57.7 29.9 60.3L39 72"/>
-
-        <!-- Buku jari / lipatan pangkal jari -->
-        <path class="fp-detail" d="M35 56.5H47"/>
-        <path class="fp-detail" d="M48.5 54H60.5"/>
-        <path class="fp-detail" d="M62 54H74"/>
-        <path class="fp-detail" d="M75.5 57H87.5"/>
+        <!-- Lipatan pangkal jari -->
+        <path class="fp-detail" d="M38.5,57.5C41,55.6 45,55.6 47.5,57.5"/>
+        <path class="fp-detail" d="M51.5,56.5C54,54.6 58,54.6 60.8,56.5"/>
+        <path class="fp-detail" d="M65,56.5C67.5,54.6 71.5,54.6 74,56.5"/>
+        <path class="fp-detail" d="M77.5,59C79.5,57.4 82.5,57.4 84.5,59"/>
 
         <!-- Ruas jari -->
-        <path class="fp-core" d="M36 40H46"/>
-        <path class="fp-core" d="M49.5 30H59.5"/>
-        <path class="fp-core" d="M63 33H73"/>
-        <path class="fp-core" d="M76.5 44H86.5"/>
+        <path class="fp-core" d="M37.6,43C40,41.4 44,41.4 46.4,43"/>
+        <path class="fp-core" d="M51.4,35C53.8,33.4 58.2,33.4 60.7,35"/>
+        <path class="fp-core" d="M65,40C67.4,38.4 71.6,38.4 74,40"/>
+        <path class="fp-core" d="M77.3,52C79.2,50.6 82.8,50.6 84.7,52"/>
 
-        <!-- Garis telapak: garis hati, garis otak, garis hidup -->
-        <path class="fp-detail" d="M35 68C46 75 66 76 85 68"/>
-        <path class="fp-detail" d="M34 77C46 86 63 87 79 78"/>
-        <path class="fp-detail" d="M39 62C38 78 44 94 55 105"/>
-        <path class="fp-core" d="M83 84C80 92 74 99 66 104"/>
+        <!-- Garis telapak: hati, otak, hidup -->
+        <path class="fp-detail" d="M39,67C48.5,73.5 65,75.5 83,69.5"/>
+        <path class="fp-detail" d="M37.5,76C48,84 63,85.5 78,77.5"/>
+        <path class="fp-detail" d="M39.5,71C39.5,84 45,96 55,104.5"/>
+        <path class="fp-core" d="M82.5,82C80,90.5 74.5,97.5 66.5,102.5"/>
+        <path class="fp-core" d="M44,98.5C49,102.5 54.5,104.5 60,104.5C65.5,104.5 71,102.5 76,98.5"/>
 
-        <!-- Sidik jari: pola whorl di ujung jari -->
-        <path class="fp-core" d="M37.5 33.5C37.5 30.7 39 29 41 29C43 29 44.5 30.7 44.5 33.5"/>
-        <path class="fp-core" d="M39 35.5C39 33.6 39.9 32.4 41 32.4C42.1 32.4 43 33.6 43 35.5"/>
-        <path class="fp-core" d="M51 21.5C51 18.7 52.5 17 54.5 17C56.5 17 58 18.7 58 21.5"/>
-        <path class="fp-core" d="M52.5 23.5C52.5 21.6 53.4 20.4 54.5 20.4C55.6 20.4 56.5 21.6 56.5 23.5"/>
-        <path class="fp-core" d="M64.5 25C64.5 22.2 66 20.5 68 20.5C70 20.5 71.5 22.2 71.5 25"/>
-        <path class="fp-core" d="M66 27C66 25.1 66.9 23.9 68 23.9C69.1 23.9 70 25.1 70 27"/>
-        <path class="fp-core" d="M78 38C78 35.2 79.5 33.5 81.5 33.5C83.5 33.5 85 35.2 85 38"/>
-        <path class="fp-core" d="M79.5 40C79.5 38.1 80.4 36.9 81.5 36.9C82.6 36.9 83.5 38.1 83.5 40"/>
-        <path class="fp-core" d="M23.5 65.5C22.3 63.9 22.6 62 24 61C25.4 60 27.2 60.4 28.4 62"/>
-
-        <!-- Bantalan telapak bawah -->
-        <path class="fp-detail" d="M43 100C48 104 54 106 60 106C66 106 72 104 77 100"/>
-        <path class="fp-core" d="M47 103.5C51 106 55.5 107.5 60 107.5C64.5 107.5 69 106 73 103.5"/>
+        <!-- Sidik jari (whorl) di ujung tiap jari -->
+        <path class="fp-core" d="M38.6,34.6C38.6,32.2 39.9,30.8 42,30.8C44.1,30.8 45.4,32.2 45.4,34.6"/>
+        <path class="fp-core" d="M40.3,36.4C40.3,34.8 41,33.9 42,33.9C43,33.9 43.7,34.8 43.7,36.4"/>
+        <path class="fp-core" d="M52.4,26.6C52.4,24.2 53.7,22.8 56,22.8C58.3,22.8 59.6,24.2 59.6,26.6"/>
+        <path class="fp-core" d="M54.2,28.4C54.2,26.8 54.9,25.9 56,25.9C57.1,25.9 57.8,26.8 57.8,28.4"/>
+        <path class="fp-core" d="M66.1,31.6C66.1,29.2 67.4,27.8 69.5,27.8C71.6,27.8 72.9,29.2 72.9,31.6"/>
+        <path class="fp-core" d="M67.8,33.4C67.8,31.8 68.5,30.9 69.5,30.9C70.5,30.9 71.2,31.8 71.2,33.4"/>
+        <path class="fp-core" d="M78.1,46.4C78.1,44.3 79.3,43 81,43C82.7,43 83.9,44.3 83.9,46.4"/>
+        <path class="fp-core" d="M79.6,48C79.6,46.6 80.2,45.8 81,45.8C81.8,45.8 82.4,46.6 82.4,48"/>
+        <path class="fp-core" d="M25.6,73.5C24.1,71.2 24.4,69.2 26.4,68.2C28.3,67.2 30.2,68 31.4,70.3"/>
       </svg>
+
     </button>
 
     <p class="fingerprint-label">Scan untuk masuk</p>
